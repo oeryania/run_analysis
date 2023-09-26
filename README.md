@@ -11,17 +11,17 @@ https://archive.ics.uci.edu/dataset/240/human+activity+recognition+using+smartph
 
 ### Recipe
 
-- Read files in `data` folder
+- Read files from `data` folder
 - Combine all rows in `train` and `test` files
-- Combine `subject` column with `y` column with `x`  (measurement) columns
+- Combine `subject` column with `y` (activity id) column with `x`  (measurement) columns
 - Replace `y` with `activity_labels`
 - Summarize the data into one row per subject and activity by taking the average of the measurements
-- Tidy the measurement column names by
-    - removing non-alpha-numeric characters (parenthesis)
-    - using underscores to separate words
-    - lowering the case
-    - spelling out abbreviations (`acc` -> `acceleration`, `gyro` -> `angular_velocity`, `mag` -> `magnitude`)
-    - removing redundant words (`body_jerk` -> `jerk`, `body_body` -> `body`)
+- Tidy the measurement column names:
+    - remove non-alpha-numeric characters (parenthesis)
+    - use underscores to separate words
+    - lower the case
+    - spell out abbreviations (`acc` -> `acceleration`, `gyro` -> `angular_velocity`, `mag` -> `magnitude`)
+    - remove redundant words (`body_jerk` -> `jerk`, `body_body` -> `body`)
 - Save result to `data_tidy.txt` (and `data_tidy.csv` for convenience)
 
 ### Variables
