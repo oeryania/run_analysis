@@ -5,7 +5,7 @@ https://archive.ics.uci.edu/dataset/240/human+activity+recognition+using+smartph
 
 ### Files
 
-- `data`  - folder containing experiment data downloaded from source above
+- `data`  - folder containing experiment data downloaded from source
 - `output/data_tidy.txt` - experiment data summarized into one row per subject per activity
 - `run_analysis.R` - script that transforms `data` into `data_tidy.txt`
 
