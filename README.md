@@ -1,4 +1,4 @@
-# Human Activity Recognition Using Smartphones Dataset
+# Human Activity Recognition Using Smartphones
 
 ### Source
 https://archive.ics.uci.edu/dataset/240/human+activity+recognition+using+smartphones
