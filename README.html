@@ -11,7 +11,7 @@
 
 
 
-<title>Human Activity Recognition Using Smartphones</title>
+<title>README</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -348,177 +348,58 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Human Activity Recognition Using
-Smartphones</h1>
 
 </div>
 
 
-<div id="study-design" class="section level1">
-<h1>Study Design</h1>
-<p>The experiments have been carried out with a group of 30 volunteers
-within an age bracket of 19-48 years. Each person performed six
-activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING,
-STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the
-waist. Using its embedded accelerometer and gyroscope, we captured
-3-axial linear acceleration and 3-axial angular velocity.</p>
-<p>Source: <a href="https://archive.ics.uci.edu/dataset/240/human+activity+recognition+using+smartphones" class="uri">https://archive.ics.uci.edu/dataset/240/human+activity+recognition+using+smartphones</a></p>
+<div id="human-activity-recognition-using-smartphones-dataset" class="section level1">
+<h1>Human Activity Recognition Using Smartphones Dataset</h1>
+<div id="source" class="section level3">
+<h3>Source</h3>
+<p><a href="https://archive.ics.uci.edu/dataset/240/human+activity+recognition+using+smartphones" class="uri">https://archive.ics.uci.edu/dataset/240/human+activity+recognition+using+smartphones</a></p>
 </div>
-<div id="record-summary" class="section level1">
-<h1>Record Summary</h1>
+<div id="files" class="section level3">
+<h3>Files</h3>
 <ul>
-<li>Triaxial acceleration from the accelerometer (total acceleration)
-and the estimated body acceleration.</li>
-<li>Triaxial Angular velocity from the gyroscope.</li>
-<li>A 561-feature vector with time and frequency domain variables.</li>
-<li>Its activity label.</li>
-<li>An identifier of the subject who carried out the experiment.</li>
+<li><code>data</code> - folder containing experiment data downloaded
+from source above</li>
+<li><code>output/data_tidy.txt</code> - experiment data summarized into
+one row per subject per activity</li>
+<li><code>run_analysis.R</code> - script that transforms
+<code>data</code> into <code>data_tidy.txt</code></li>
 </ul>
 </div>
-<div id="code-book" class="section level1">
-<h1>Code Book</h1>
-<p>List of all variables, indicated in a code block like this:
-<code>variable</code>.</p>
-<p>Grouped by signal domain (time/frequency) and source
-(accelerometer/gyroscope).</p>
-<div id="keys" class="section level2">
-<h2>Keys</h2>
+<div id="recipe" class="section level3">
+<h3>Recipe</h3>
 <ul>
-<li><code>subject</code> - ID of subject performing the activity</li>
-<li><code>activity</code> - One of the six activities that is being
-performed (see Study Design)</li>
+<li>Read files in <code>data</code> folder</li>
+<li>Combine all rows in <code>train</code> and <code>test</code>
+files</li>
+<li>Combine <code>subject</code> column with <code>y</code> column with
+<code>x</code> (measurement) columns</li>
+<li>Replace <code>y</code> with <code>activity_labels</code></li>
+<li>Summarize the data into one row per subject and activity by taking
+the average of the measurements</li>
+<li>Tidy the measurement column names by
+<ul>
+<li>removing non-alpha-numeric characters (parenthesis)</li>
+<li>using underscores to separate words</li>
+<li>lowering the case</li>
+<li>spelling out abbreviations (<code>acc</code> -&gt;
+<code>acceleration</code>, <code>gyro</code> -&gt;
+<code>angular_velocity</code>, <code>mag</code> -&gt;
+<code>magnitude</code>)</li>
+<li>removing redundant words (<code>body_jerk</code> -&gt;
+<code>jerk</code>, <code>body_body</code> -&gt; <code>body</code>)</li>
+</ul></li>
+<li>Save result to <code>data_tidy.txt</code> (and
+<code>data_tidy.csv</code> for convenience)</li>
 </ul>
 </div>
-<div id="time-domain-signals" class="section level2">
-<h2>Time Domain Signals</h2>
-<div id="from-accelerometer" class="section level3">
-<h3>From Accelerometer</h3>
-<div id="body" class="section level4">
-<h4>Body</h4>
-<ul>
-<li><code>t_acceleration_body_mean_x</code></li>
-<li><code>t_acceleration_body_mean_y</code></li>
-<li><code>t_acceleration_body_mean_z</code></li>
-<li><code>t_acceleration_body_std_x</code></li>
-<li><code>t_acceleration_body_std_y</code></li>
-<li><code>t_acceleration_body_std_z</code></li>
-</ul>
-</div>
-<div id="gravity" class="section level4">
-<h4>Gravity</h4>
-<ul>
-<li><code>t_acceleration_gravity_mean_x</code></li>
-<li><code>t_acceleration_gravity_mean_y</code></li>
-<li><code>t_acceleration_gravity_mean_z</code></li>
-<li><code>t_acceleration_gravity_std_x</code></li>
-<li><code>t_acceleration_gravity_std_y</code></li>
-<li><code>t_acceleration_gravity_std_z</code></li>
-</ul>
-</div>
-<div id="jerk" class="section level4">
-<h4>Jerk</h4>
-<ul>
-<li><code>t_acceleration_jerk_mean_x</code></li>
-<li><code>t_acceleration_jerk_mean_y</code></li>
-<li><code>t_acceleration_jerk_mean_z</code></li>
-<li><code>t_acceleration_jerk_std_x</code></li>
-<li><code>t_acceleration_jerk_std_y</code></li>
-<li><code>t_acceleration_jerk_std_z</code></li>
-</ul>
-</div>
-</div>
-<div id="from-gyroscope" class="section level3">
-<h3>From Gyroscope</h3>
-<div id="body-1" class="section level4">
-<h4>Body</h4>
-<ul>
-<li><code>t_angular_velocity_body_mean_x</code></li>
-<li><code>t_angular_velocity_body_mean_y</code></li>
-<li><code>t_angular_velocity_body_mean_z</code></li>
-<li><code>t_angular_velocity_body_std_x</code></li>
-<li><code>t_angular_velocity_body_std_y</code></li>
-<li><code>t_angular_velocity_body_std_z</code></li>
-</ul>
-</div>
-<div id="jerk-1" class="section level4">
-<h4>Jerk</h4>
-<ul>
-<li><code>t_angular_velocity_jerk_mean_x</code></li>
-<li><code>t_angular_velocity_jerk_mean_y</code></li>
-<li><code>t_angular_velocity_jerk_mean_z</code></li>
-<li><code>t_angular_velocity_jerk_std_x</code></li>
-<li><code>t_angular_velocity_jerk_std_y</code></li>
-<li><code>t_angular_velocity_jerk_std_z</code></li>
-</ul>
-</div>
-</div>
-<div id="magnitude" class="section level3">
-<h3>Magnitude</h3>
-<ul>
-<li><code>t_acceleration_body_magnitude_mean</code></li>
-<li><code>t_acceleration_body_magnitude_std</code></li>
-<li><code>t_acceleration_gravity_magnitude_mean</code></li>
-<li><code>t_acceleration_gravity_magnitude_std</code></li>
-<li><code>t_acceleration_jerk_magnitude_mean</code></li>
-<li><code>t_acceleration_jerk_magnitude_std</code></li>
-<li><code>t_angular_velocity_body_magnitude_mean</code></li>
-<li><code>t_angular_velocity_body_magnitude_std</code></li>
-<li><code>t_angular_velocity_jerk_magnitude_mean</code></li>
-<li><code>t_angular_velocity_jerk_magnitude_std</code></li>
-</ul>
-</div>
-</div>
-<div id="frequency-domain-signals" class="section level2">
-<h2>Frequency Domain Signals</h2>
-<div id="from-accelerometer-1" class="section level3">
-<h3>From Accelerometer</h3>
-<div id="body-2" class="section level4">
-<h4>Body</h4>
-<ul>
-<li><code>f_acceleration_body_mean_x</code></li>
-<li><code>f_acceleration_body_mean_y</code></li>
-<li><code>f_acceleration_body_mean_z</code></li>
-<li><code>f_acceleration_body_std_x</code></li>
-<li><code>f_acceleration_body_std_y</code></li>
-<li><code>f_acceleration_body_std_z</code></li>
-</ul>
-</div>
-<div id="jerk-2" class="section level4">
-<h4>Jerk</h4>
-<ul>
-<li><code>f_acceleration_jerk_mean_x</code></li>
-<li><code>f_acceleration_jerk_mean_y</code></li>
-<li><code>f_acceleration_jerk_mean_z</code></li>
-<li><code>f_acceleration_jerk_std_x</code></li>
-<li><code>f_acceleration_jerk_std_y</code></li>
-<li><code>f_acceleration_jerk_std_z</code></li>
-</ul>
-</div>
-</div>
-<div id="from-gyroscope-1" class="section level3">
-<h3>From Gyroscope</h3>
-<ul>
-<li><code>f_angular_velocity_body_mean_x</code></li>
-<li><code>f_angular_velocity_body_mean_y</code></li>
-<li><code>f_angular_velocity_body_mean_z</code></li>
-<li><code>f_angular_velocity_body_std_x</code></li>
-<li><code>f_angular_velocity_body_std_y</code></li>
-<li><code>f_angular_velocity_body_std_z</code></li>
-</ul>
-</div>
-<div id="magnitude-1" class="section level3">
-<h3>Magnitude</h3>
-<ul>
-<li><code>f_acceleration_body_magnitude_mean</code></li>
-<li><code>f_acceleration_body_magnitude_std</code></li>
-<li><code>f_acceleration_jerk_magnitude_mean</code></li>
-<li><code>f_acceleration_jerk_magnitude_std</code></li>
-<li><code>f_angular_velocity_body_magnitude_mean</code></li>
-<li><code>f_angular_velocity_body_magnitude_std</code></li>
-<li><code>f_angular_velocity_jerk_magnitude_mean</code></li>
-<li><code>f_angular_velocity_jerk_magnitude_std</code></li>
-</ul>
-</div>
+<div id="variables" class="section level3">
+<h3>Variables</h3>
+<p>More information about the variables is provided in the
+<code>code_book</code>.</p>
 </div>
 </div>
 

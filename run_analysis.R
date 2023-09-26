@@ -4,7 +4,7 @@ library(dplyr)
          x_test <- read.fwf("./data/test/X_test.txt",   widths = rep(16, 561))
         y_train <- read.table("./data/train/y_train.txt")
          y_test <- read.table("./data/test/y_test.txt")
-  subject_train <- read.table("./data/subject_train.txt")
+  subject_train <- read.table("./data/train/subject_train.txt")
    subject_test <- read.table("./data/test/subject_test.txt")
        features <- read.table("./data/features.txt")
 activity_labels <- read.table("./data/activity_labels.txt")
@@ -29,20 +29,25 @@ data_full <- cbind(subject, activity, measurements)
 data_tidy <- data_full %>% group_by(subject, activity) %>% summarize_all(mean)
 
 # clean variable names
-names(data_tidy) <- names(data_full) %>%
-    gsub(x=., "(-)std\\(\\)", "\\1standard-deviation\\2") %>%
-    gsub(x=., "\\(|\\)", "") %>%
-    gsub(x=., "^t([A-Z])", "\\1") %>%
-    gsub(x=., "^f([A-Z])", "fft-\\1") %>%
-    gsub(x=., "([-][X|Y|Z])", "\\1-axis") %>%
-    gsub(x=., "Acc", "Acceleration") %>%
-    gsub(x=., "Gyro", "AngularVelocity") %>%
-    gsub(x=., "([a-z])([A-Z])", "\\1_\\2") %>%
-    gsub(x=., "-", "_") %>%
-    tolower
+names(data_tidy) <- names(data_tidy) %>%
+    gsub(x=., "BodyBody", "Body") %>%               # remove duplicate in name
+    gsub(x=., "-", "_") %>%                         # separate words with underscores
+    gsub(x=., "([a-z])([A-Z])", "\\1_\\2") %>%      # separate words with underscores
+    tolower %>%                                     # convert to lower case
+    gsub(x=., "\\(\\)", "") %>%                     # remove parenthesis
+    gsub(x=., "(t|f)_(.+)_(acc|gyro)_", "\\1_\\3_\\2_") %>% # put instrument at the beginning
+    gsub(x=., "_acc_", "_acceleration_") %>%        # spell out abbreviation
+    gsub(x=., "_gyro_", "_angular_velocity_") %>%   # spell out abbreviation
+    gsub(x=., "_mag_", "_magnitude_") %>%           # spell out abbreviation
+    gsub(x=., "_body_jerk_", "_jerk_")              # simplify naming (one word per qualifier)
+
 
 
 # save tidy data to file
-write.table(data_tidy, "./data/data_tidy.txt", row.names = FALSE)
+write.table(data_tidy, "./output/data_tidy.txt", row.names = FALSE)
+write.csv(data_tidy, "./output/data_tidy.csv", row.names = FALSE)
 
-write.csv(names(data_tidy), "./data/data_tidy_variables.csv", row.names = FALSE, quote = FALSE)
+# format for markdown (make bullets)
+variables <- names(data_tidy) %>% gsub(x=., "^(.*)$", "- `\\1`")
+
+write.table(variables, "./output/data_tidy_variables.txt", row.names = FALSE, quote = FALSE)
