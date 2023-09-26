@@ -42,9 +42,11 @@ names(data_tidy) <- names(data_tidy) %>%
     gsub(x=., "_body_jerk_", "_jerk_")              # simplify naming (one word per qualifier)
 
 
-# optional: generate mardkown for variable names (make bullets and surround with backticks)
-# names(data_tidy) %>% gsub(x=., "^(.*)$", "- `\\1`") %>% write.table("./output/data_tidy_variables.txt", row.names = FALSE, quote = FALSE)
-
 # save tidy data to file
 write.table(data_tidy, "./output/data_tidy.txt", row.names = FALSE)
 write.csv(data_tidy, "./output/data_tidy.csv", row.names = FALSE)
+
+# generate mardkown for variable names to be used in code_book (optional)
+names(data_tidy) %>%
+    gsub(x=., "^(.*)$", "- `\\1`") %>%   # make bullets and surround with backticks
+    write.table("./output/data_tidy_variables.txt", row.names = FALSE, quote = FALSE)

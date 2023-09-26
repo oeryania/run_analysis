@@ -1,26 +1,17 @@
-# Human Activity Recognition Using Smartphones
-
-# Study Design
-The experiments have been carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, we captured 3-axial linear acceleration and 3-axial angular velocity.
-
-Source: https://archive.ics.uci.edu/dataset/240/human+activity+recognition+using+smartphones
-
-# Record Summary
-- Triaxial acceleration from the accelerometer (total acceleration) and the estimated body acceleration.
-- Triaxial Angular velocity from the gyroscope. 
-- A 561-feature vector with time and frequency domain variables. 
-- Its activity label. 
-- An identifier of the subject who carried out the experiment.
-
 # Code Book
 
-List of all variables, indicated in a code block like this:  `variable`.
-
-Grouped by signal domain (time/frequency) and source (accelerometer/gyroscope).
+List of all variables, grouped by signal domain (time/frequency) and source (accelerometer/gyroscope).
 
 ## Keys
 - `subject` - ID of subject performing the activity
-- `activity` - One of the six activities that is being performed (see Study Design)
+    - `1`-`30`
+- `activity` - Activity label of the activity being performed by subject
+    - `WALKING`
+    - `WALKING_UPSTAIRS`
+    - `WALKING_DOWNSTAIRS`
+    - `SITTING`
+    - `STANDING`
+    - `LAYING`
 
 ## Time Domain Signals
 ### From Accelerometer
@@ -78,6 +69,8 @@ Grouped by signal domain (time/frequency) and source (accelerometer/gyroscope).
 - `t_angular_velocity_jerk_magnitude_std`
 
 ## Frequency Domain Signals
+Fast Fourier Transform applied to some of the signals above.
+
 ### From Accelerometer
 #### Body
 - `f_acceleration_body_mean_x`

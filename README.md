@@ -1,7 +1,19 @@
 # Human Activity Recognition Using Smartphones
 
-### Source
-https://archive.ics.uci.edu/dataset/240/human+activity+recognition+using+smartphones
+### Study Design
+The experiments have been carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, we captured 3-axial linear acceleration and 3-axial angular velocity.
+
+Full Study: https://archive.ics.uci.edu/dataset/240/human+activity+recognition+using+smartphones
+
+### Record Summary
+- Triaxial acceleration from the accelerometer (total acceleration) and the estimated body acceleration.
+- Triaxial Angular velocity from the gyroscope. 
+- A 561-feature vector with time and frequency domain variables. 
+- Its activity label. 
+- An identifier of the subject who carried out the experiment.
+
+### Data Source
+https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
 
 ### Files
 
@@ -24,6 +36,6 @@ https://archive.ics.uci.edu/dataset/240/human+activity+recognition+using+smartph
     - remove redundant words (`body_jerk` -> `jerk`, `body_body` -> `body`)
 - Save result to `data_tidy.txt` (and `data_tidy.csv` for convenience)
 
-### Variables
+### Code Book
 
-More information about the variables is provided in the `code_book`.
+See `code_book`.
